@@ -10,7 +10,7 @@ namespace PullRequestAPPAPI
         static async Task Main(string[] args)
         {
             //GetCall();
-            string accessToken = "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";
+            string accessToken = "add token here";
             string owner = "idheerajcse";
             string repo = "GithubPullrequest";
             string baseBranch = "main";
@@ -51,7 +51,7 @@ namespace PullRequestAPPAPI
         {
             HttpClient client = new HttpClient();
             client.BaseAddress = new Uri("https://api.github.com");
-            var token = "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";
+            var token = "Token here";
 
             client.DefaultRequestHeaders.UserAgent.Add(new System.Net.Http.Headers.ProductInfoHeaderValue("AppName", "1.0"));
             client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
