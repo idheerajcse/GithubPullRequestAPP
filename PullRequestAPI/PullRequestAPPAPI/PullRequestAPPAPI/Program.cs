@@ -21,7 +21,21 @@ namespace PullRequestAPPAPI
             using (HttpClient client = new HttpClient())
             {
                 //client.DefaultRequestHeaders.Add("Authorization", "token " + accessToken);
+                #region adding new file in Git
+                // Create a new file
+                var createFileJson = $"{{\"message\": \"{title}\", \"content\": \"{Convert.ToBase64String(Encoding.UTF8.GetBytes(fileContent))}\", \"branch\": \"{headBranch}\"}}";
+                var createFileContent = new StringContent(createFileJson, Encoding.UTF8, "application/json");
+                HttpResponseMessage createFileResponse = await client.PutAsync($"https://api.github.com/repos/{owner}/{repo}/contents/{fileName}", createFileContent);
 
+                if (!createFileResponse.IsSuccessStatusCode)
+                {
+                    Console.WriteLine($"Error creating file: {createFileResponse.ReasonPhrase}");
+                    return;
+                }
+                #endregion
+
+
+                #region Create a Pull Request
                 client.DefaultRequestHeaders.UserAgent.Add(new System.Net.Http.Headers.ProductInfoHeaderValue("AppName", "1.0"));
                 client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
                 client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Token", accessToken);
@@ -39,6 +53,7 @@ namespace PullRequestAPPAPI
                 {
                     Console.WriteLine($"Error creating pull request: {response.ReasonPhrase}");
                 }
+                #endregion
             }
         }
 
