@@ -13,7 +13,7 @@ namespace PullRequestAPPAPI
         {
             //GetCall();
             //updateFileAndCommit();
-            string accessToken = "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";
+            string accessToken = "accesscode";
             string owner = "idheerajcse";
             string repo = "GithubPullrequest";
             string baseBranch = "main";
@@ -106,7 +106,7 @@ public static async Task ExecuteAsync()
 public static async Task updateFileAndCommit()
 {
 
-    string accessToken = "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";
+    string accessToken = "access token";
     string owner = "idheerajcse";
     string repo = "GithubPullrequest";
     string branch = "feature101";
